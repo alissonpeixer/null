@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "live chat in real time using Sockets events",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alissonpeixer/live-chat.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Alisson Peixer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alissonpeixer/live-chat/issues"
+  },
+  "homepage": "https://github.com/alissonpeixer/live-chat#readme"
+}
