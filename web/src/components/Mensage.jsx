@@ -1,55 +1,43 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef } from "react"
 
+export const Mensage = ({ socket, messagesRecieved }) => {
+    const myRef = useRef(null);
 
+    let audio = new Audio("/not.mp3")
 
-export const Mensage = ({ socket, userDataSocket }) => {
-
-    const [messagesRecieved, setMessagesReceived] = useState([])
 
     useEffect(() => {
-        socket.on('join-user', (data) => {
-        setMessagesReceived((state) => [
-            ...state,
-            data
-        ])
-        });
-
-
-        return () => socket.off('join-user');
-    }, [socket]);
-
-
-
-
+        audio.play()
+        myRef.current.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+    },[messagesRecieved])
 
 
 
     return (
-        <ul className="chat-area">
+        <ul id="chat-areaa" className="chat-area">
 
-            {userDataSocket.username &&
-                <li className="mensage-li">
-                        <span>
-                            <strong>{userDataSocket.username} {`>`}</strong>
-                        </span>
-                        <p>Acabou de entrar no chat!</p>
-                   </li>}
+
 
             {
 
                 messagesRecieved.map((data, id) => (
+
+
                     <li key={id} className="mensage-li">
-                        <span>
-                            <strong>{data.username} {`>`}</strong>
-                        </span>
-                        <p>Acabou de entrar no chat!</p>
+                            <span>
+                                <strong>{data.username} {`>`}</strong>
+                            </span>
+                            <p>{data.msg}</p>
                     </li>
+
+
+
                 ))
 
 
             }
 
-
+            <div ref={myRef}></div>
 
         </ul>
     )

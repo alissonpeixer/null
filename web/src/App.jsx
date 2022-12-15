@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import {  useState } from 'react'
 import './App.css'
 import { Session } from './modules/Session'
 
@@ -14,20 +14,23 @@ import { Home } from './pages/Home'
 function App() {
 
   const [state, setState] = useState(false)
-  const [onlines, setOnlines] = useState(0)
+
+  const [messagesRecieved, setMessagesReceived] = useState([])
 
 
-  console.log(onlines)
+  const [username, setUsernameMaster] = useState()
+  const [onlines, setOnlines] = useState('null')
+
 
   return (
 
-    <Session className="App" socket={socket} setState={setState} setOnlines={setOnlines} >
+    <Session className="App" socket={socket} setState={setState} setMessagesReceived={setMessagesReceived} setOnlines={setOnlines} >
 
       {
-        state ?
-          <Home socket={socket} userDataSocket={state} onlines={onlines}  />
+        state.username ?
+          <Home socket={socket} messagesRecieved={messagesRecieved} setMessagesReceived={setMessagesReceived} username={username} onlines={onlines} />
             :
-          <Username socket={socket} />
+          <Username socket={socket} setUsernameMaster={setUsernameMaster} />
 
       }
 

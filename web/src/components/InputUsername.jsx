@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 
-export const Username = ({socket}) => {
+export const Username = ({socket, setUsernameMaster}) => {
 
     const [username, setUsername] = useState('')
 
 
 
     const onsubmit = () => {
+        setUsernameMaster(username)
         socket.emit('join-user', username)
     }
 
