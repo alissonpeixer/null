@@ -1,7 +1,32 @@
 import { useEffect, useState } from "react"
-import socket  from "../socket"
 
-export const Session = ({ children, username}) => {
+
+
+
+
+export const Session = ({ children, socket, setState, setOnlines }) => {
+
+
+
+    useState(() => {
+        setOnlines(+1)
+    },[])
+
+
+    useEffect(() => {
+
+        socket.on('login-user', data => {
+            setState(data)
+        })
+
+
+
+        return () => socket.off('login-user');
+
+    },[socket])
+
+
+
 
 
 
